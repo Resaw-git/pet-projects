@@ -51,18 +51,103 @@
         </div>
     </nav>
 
-    <h1 class="container my-5 text-center text-white">Базовый курс JavaScript</h1>
+    <h1 class="container my-5 text-center text-white">Основы языка JavaScript</h1>
 
     <div class="container">
         <div class="row">
             <div class="col-lg-12col-sm-12 d-flex justify-content-center my-3">
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Основы языка JavaScript</h5>
-                        <p class="card-text">1. Задать температуру в градусах по Цельсию. Вывести в alert
+                        <h5 class="card-title text-center">Задание 1</h5>
+                        <p class="card-text">Задать температуру в градусах по Цельсию. Вывести в alert
                             соответствующую температуру в градусах по Фаренгейту. Подсказка: расчёт идёт
-                            по формуле: Tf&nbsp=&nbsp(9&nbsp/&nbsp5)&nbsp*&nbspTc&nbsp+&nbsp32, 
+                            по формуле: Tf&nbsp=&nbsp(9&nbsp/&nbsp5)&nbsp*&nbspTc&nbsp+&nbsp32,
                             где Tf – температура по Фаренгейту, Tc – температура по Цельсию
+                        </p>
+                        <p class="card-text">Листинг программы: <br>
+                            let Tc = +prompt(`Введите температуру по Цельсию`)<br>
+                            let Tf = (9 / 5) * Tf + 32<br>
+                            alert('Температура по Фаренгейту = ' + Tf.toFixed(1))
+                        </p>
+                        <button type="button" class="btn btn-dark" id="1">Запустить</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12col-sm-12 d-flex justify-content-center my-3">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Задание 2</h5>
+                        <p class="card-text">Объявить две переменные: admin и name. Записать в name строку "Василий";
+                            Скопировать значение из name в admin. Вывести admin (должно вывести «Василий»).
+                        </p>
+                        <p class="card-text">Листинг программы: <br>
+                            let admin, name<br>
+                            name = "Василий"<br>
+                            admin = name<br>
+                            alert(admin)
+                        </p>
+                        <button type="button" class="btn btn-dark" id="2">Запустить</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12col-sm-12 d-flex justify-content-center my-3">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Задание 3</h5>
+                        <p class="card-text">Чему будет равно JS-выражение 1000 + "108"
+                        </p>
+                        <p class="card-text">Листинг программы: <br>
+                            alert(1000 + "108")
+                        </p>
+                        <button type="button" class="btn btn-dark" id="3">Запустить</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12col-sm-12 d-flex justify-content-center my-3">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Задание 4</h5>
+                        <p class="card-text">В чём разница атрибутов тега script (async и defer)
+                        </p>
+                        <p class="card-text">
+                            В современных сайтах скрипты обычно «тяжелее», чем HTML: они весят больше, дольше
+                            обрабатываются. Когда браузер загружает HTML и доходит до тега
+                            &ltscript&gt...&lt/script&gt, он не может продолжать строить DOM. Он должен сначала
+                            выполнить скрипт. То же самое происходит и с внешними скриптами
+                            &ltscript src="..."&gt&lt/script&gt: браузер должен подождать, пока загрузится скрипт,
+                            выполнить его, и только затем обработать остальную страницу.
+                        </p>
+                        <p class="card-text">
+                            Атрибут defer сообщает браузеру, что он должен продолжать обрабатывать страницу и загружать
+                            скрипт в фоновом режиме, а затем запустить этот скрипт, когда он загрузится.
+                        </p>
+                        <p class="card-text">
+                            Атрибут async означает, что скрипт абсолютно независим:
+                            <ul>
+                                <li>
+                                    Страница не ждёт асинхронных скриптов, содержимое обрабатывается и отображается.
+                                </li>
+                                <li>
+                                    Событие DOMContentLoaded и асинхронные скрипты не ждут друг друга:
+                                    <ul>
+                                        <li>
+                                            DOMContentLoaded может произойти как до асинхронного скрипта (если асинхронный
+                                            скрипт
+                                            завершит загрузку после того, как страница будет готова),
+                                        </li>
+                                        <li>
+                                            …так и после асинхронного скрипта (если он короткий или уже содержится в
+                                            HTTP-кеше)
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Остальные скрипты не ждут async, и скрипты casync не ждут другие скрипты.
+                                </li>
+                            </ul>
                         </p>
                     </div>
                 </div>
@@ -93,6 +178,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
+    <script src="./scripts/base_js-1.js"></script>
 </body>
 
 </html>
