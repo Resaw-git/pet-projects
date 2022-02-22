@@ -59,7 +59,11 @@
                 <div class="card w-100">
                     <div class="card-body">
                         <h5 class="card-title text-center">Задание 1</h5>
-                        <p class="card-text">С помощью цикла while вывести все простые числа в промежутке от 0 до 100
+                        <p class="card-text">Написать функцию, преобразующую число в объект. Передавая на вход число от
+                            0 до 999, мы должны получить на выходе объект, в котором в соответствующих свойствах описаны
+                            единицы, десятки и сотни. Например, для числа 245 мы должны получить следующий объект:
+                            {'единицы': 5, 'десятки': 4, 'сотни': 2}. Если число превышает 999, необходимо выдать
+                            соответствующее сообщение с помощью console.log и вернуть пустой объект.
                         </p>
                         <p class="card-text">Листинг программы: <br>
                         <pre>
@@ -77,90 +81,6 @@ while (i <= 100) {
 </pre>
                         </p>
                         <button type="button" class="btn btn-dark" id="1">Запустить</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-12col-sm-12 d-flex justify-content-center my-3">
-                <div class="card w-100">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Задание 2</h5>
-                        <p class="card-text">Предположим, есть сущность корзины. Нужно реализовать функционал подсчета
-                            стоимости корзины в зависимости от находящихся в ней товаров. Товары в корзине хранятся в
-                            массиве. Задачи: <br>
-                            a) Организовать такой массив для хранения товаров в корзине; <br>
-                            b) Организовать функцию <strong>countBasketPrice</strong>, которая будет считать стоимость корзины. <br>
-                        </p>
-                        <p class="card-text">Листинг программы: <br>
-                        <pre>
-    const basket = [
-        ['яблоки', 50, 1], 
-        ['груши', 60, 2],
-        ['бананы', 70, 3]
-        /*первый элемент массива наименование товара
-        второй цена
-        третий колличество*/
-    ]
-    
-    function countBasketPrice(basket) {
-        let sum = 0
-        for (i=0; i&ltbasket.length; i++) {
-            sum = sum + basket[i][1] * basket[i][2]
-        }
-        return sum
-    }
-    
-    console.log('Сумма товаров в корзине: ' + countBasketPrice(basket))
-</pre>
-                        </p>
-                        <button type="button" class="btn btn-dark" id="2">Запустить</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12col-sm-12 d-flex justify-content-center my-3">
-                <div class="card w-100">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Задание 3</h5>
-                        <p class="card-text">Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла. Выглядеть это должно так: for(…){// здесь пусто}
-                        </p>
-                        <p class="card-text">Листинг программы: <br>
-                        <pre>
-for (i=0; i&lt=9; console.log(i), i++) {}
-</pre>
-                        </p>
-                        <button type="button" class="btn btn-dark" id="3">Запустить</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12col-sm-12 d-flex justify-content-center my-3">
-                <div class="card w-100">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Задание 4</h5>
-                        <p class="card-text">Нарисовать пирамиду с помощью console.log, как показано на рисунке, только у вашей пирамиды должно быть 20 рядов, а не 5: <br>
-                            x <br>
-                            xx <br>
-                            xxx <br>
-                            xxxx <br>
-                            xxxxx <br>
-                        </p> 
-                        <p class="card-text">Листинг программы: <br>
-                        <pre>
-function pyramid(rows) {
-    let symbol = ''
-    for (i=0; i&ltrows; i++) {
-        symbol += 'х'
-        for (j=0; j&lti; j++) {
-            symbol += 'х'
-        }
-        symbol += '\n'
-    }
-    console.log(symbol)
-}
-    
-pyramid(20)
-</pre>
-                        </p>
-                        <button type="button" class="btn btn-dark" id="4">Запустить</button>
                     </div>
                 </div>
             </div>
@@ -190,7 +110,7 @@ pyramid(20)
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
-    <script src="../scripts/basic3.js"></script>
+    <script src="../scripts/basic4.js"></script>
 </body>
 
 </html>
