@@ -67,23 +67,69 @@
                         </p>
                         <p class="card-text">Листинг программы: <br>
                         <pre>
-let i = 0
-while (i <= 100) {
-    let count = 0
-    let j = 1
-    while (j < i) {
-        if (i % j == 0) { count++ }
-        j++
+function numToObj(num) {
+    num = num.toString()
+    if (num > 999) {
+        console.log('Число больше 999')
+        return {}
     }
-    if (count == 1) console.log(i)
-    i++
+    if (num < 0) {
+        console.log('Число меньше 0')
+        return {}
+    }
+    return {
+        'единицы': num[num.length - 1],
+        'десятки': num[num.length - 2],
+        'сотни': num[num.length - 3],
+    }
 }
+
+console.log(numToObj(123))
 </pre>
                         </p>
                         <button type="button" class="btn btn-dark" id="1">Запустить</button>
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-12col-sm-12 d-flex justify-content-center my-3">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Задание 2</h5>
+                        <p class="card-text">a) В прошлой теме вы реализовали корзину на базе массивов. Какими объектами можно заменить их элементы? <br>
+                            b) Реализуйте такие объекты. <br>
+                            c) Перенести функционал подсчета корзины на объектно-ориентированную базу. <br>
+                        </p>
+                        <p class="card-text">Листинг программы: <br>
+                        <pre>
+const Basket = {
+    goods: [
+      {
+        id_product: 123,
+        product_name: "Ноутбук",
+        price: 45600,
+        quantity: 1
+      },
+      {
+        id_product: 456,
+        product_name: "Мышка",
+        price: 1000,
+        quantity: 1
+      }
+    ],
+    countBasketPrice() {
+      return this.goods.reduce((totalPrice, cartItem) => totalPrice += cartItem.price, 0);
+    }
+  }
+
+  console.log(Basket.countBasketPrice())
+</pre>
+                        </p>
+                        <button type="button" class="btn btn-dark" id="2">Запустить</button>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
     </div>
