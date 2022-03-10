@@ -66,11 +66,75 @@
                         </p>
                         <p class="card-text">Листинг программы: <br>
                         <pre>
+const chessboard = document.getElementById('chessboard')
+const table = document.createElement('table')
+const tbody = document.createElement('tbody')
+const letters = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'J', 'H']
+
+chessboard.appendChild(table)
+table.appendChild(tbody)
+
+for (let row=0; row<=8; row++) {
+    const tr = document.createElement('tr')
+    document.querySelector('tbody').appendChild(tr)
+    for (let col=0; col<=8; col++) {
+        const th = document.createElement('th')
+        const td = document.createElement('td')
+        if (row == 0) {
+            document.querySelector('tr').appendChild(th)
+            th.innerText = letters[col]
+            th.style.width = "30px"
+            th.style.textAlign = "center"
+        } else {
+            document.querySelectorAll('tr').forEach(el => {
+                if (col == 0) {
+                    el.appendChild(th)
+                    th.innerText = 9 - row
+                    th.style.height = "30px"
+                    th.style.textAlign = "center"
+                } else {
+                    el.appendChild(td)
+                    td.style.border = "1px solid"
+                    if ((col - row) % 2 != 0) {
+                        td.style.backgroundColor = "black"
+                    }  
+                }
+            })
+        }
+    }
+}
+</pre>
+                        </p>
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                            data-bs-target="#task1">Запустить</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12col-sm-12 d-flex justify-content-center my-3">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Задание 2</h5>
+                        <p class="card-text"> Сделать генерацию корзины динамической: верстка корзины не должна
+                            находиться в HTML-структуре. Там должен быть только div, в который будет вставляться
+                            корзина, сгенерированная на базе JS:
+                        <ol style="list-style-type: lower-alpha;">
+                            <li>
+                                Пустая корзина должна выводить строку «Корзина пуста»;
+                            </li>
+                            <li>
+                                Наполненная должна выводить «В корзине: n товаров на сумму m рублей».
+                            </li>
+                        </ol>
+                        </p>
+                        <p class="card-text">Листинг программы: <br>
+                        <pre>
 
 </pre>
                         </p>
-                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Запустить</button>
-                        
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                            data-bs-target="#task2">Запустить</button>
+
                     </div>
                 </div>
             </div>
@@ -79,21 +143,39 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="task1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Задание 1</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body d-flex justify-content-center">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Задание 1</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center" id="chessboard">
 
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Закрыть</button>
-              </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Закрыть</button>
+                </div>
             </div>
-          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="task2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Задание 2</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center" id="2">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque iure quis eveniet doloremque placeat
+                    ullam tempore expedita ipsam maxime vero?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -109,7 +191,7 @@
             </ul>
         </footer>
     </div>
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
