@@ -129,11 +129,133 @@ for (let row=0; row<=8; row++) {
                         </p>
                         <p class="card-text">Листинг программы: <br>
                         <pre>
+const cart = document.querySelector('.cart')
+const basket = {
+    goods: [
+    {
+        id_product: 123,
+        product_name: "Ноутбук",
+        price: 45600,
+        quantity: 1
+    },
+    {
+        id_product: 456,
+        product_name: "Мышка",
+        price: 1000,
+        quantity: 1
+    }
+    ],
+    countBasketPrice() {
+        if (this.goods.length > 0) {
+            return this.goods.reduce((totalPrice, cartItem) => totalPrice += cartItem.price, 0);
+        }
+    }
+}
 
+function showBasket() {
+    if (basket.goods.length == 0) {
+        cart.innerText = 'Корзина пуста'
+    } else {
+        for (let i = 0; i < basket.goods.length; i++) {
+            cart.insertAdjacentHTML(
+                'beforeend',
+                `< div class="card m-1">
+                < div class="card-body">
+                < h5 class="card-title">${basket.goods[i].product_name}< /h5>
+                < p class="card-text">Цена: ${basket.goods[i].price}< /p>
+                < p class="card-text">Колличество: ${basket.goods[i].quantity}< /p>
+                < /div>
+            < /div>`)
+        }
+        cart.insertAdjacentText('beforeEnd', `В корзине ${basket.goods.length} товаров на сумму ${basket.countBasketPrice()} рублей`)
+    }
+}
+
+function clearBasket() {
+    basket.goods = []
+    showBasket()
+}
+
+showBasket()
 </pre>
                         </p>
                         <button type="button" class="btn btn-dark" data-bs-toggle="modal"
                             data-bs-target="#task2">Запустить</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12col-sm-12 d-flex justify-content-center my-3">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Задание 3</h5>
+                        <p class="card-text"> Реализовать по аналогии со вторым заданием каталог товаров:
+                        <ol style="list-style-type: lower-alpha;">
+                            <li>
+                                Создать массив товаров (сущность Product);
+                            </li>
+                            <li>
+                                При загрузке страницы на базе данного массива генерировать вывод из него. HTML-код
+                                должен содержать только div id=”catalog” без вложенного кода. Весь вид каталога
+                                генерируется JS.
+                            </li>
+                        </ol>
+                        <p class="card-text">Листинг программы: <br></p>
+                            <pre>
+const catalog = document.getElementById('catalog')
+const products = {
+    goods: [
+        {
+            id_product: 123,
+            product_name: 'Ноутбук',
+            description: 'Apple MacBook Air',
+            price: 45600,
+        },
+        {
+            id_product: 456,
+            product_name: 'Мышка',
+            description: 'Logitech G102',
+            price: 1000,
+        },
+        {
+            id_product: 321,
+            product_name: 'Монитор',
+            description: 'LG 24MK430H',
+            price: 22400,
+        },
+    ]
+}
+
+
+
+function showCatalog() {
+    if (products.goods.length == 0) {
+        catalog.innerText = 'Каталог пуст'
+    } else {
+        for (let i = 0; i < products.goods.length; i++) {
+            catalog.insertAdjacentHTML(
+                'beforeend',
+                `< div class="card m-1">
+                < div class="card-body">
+                < h5 class="card-title">${products.goods[i].product_name}< h5>
+                < p class="card-text">${products.goods[i].description}< /p>
+                < p class="card-text">Цена: ${products.goods[i].price}< /p>
+                < /div>
+            < div>`)
+        }
+    }
+}
+
+function clearCatalog() {
+    products.goods = []
+    showCatalog()
+}
+
+showCatalog()
+</pre>             
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                            data-bs-target="#task3">Запустить</button>
 
                     </div>
                 </div>
@@ -167,16 +289,38 @@ for (let row=0; row<=8; row++) {
                     <h5 class="modal-title" id="exampleModalLabel">Задание 2</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body d-flex justify-content-center" id="2">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque iure quis eveniet doloremque placeat
-                    ullam tempore expedita ipsam maxime vero?
+                <div class="modal-body d-flex justify-content-center">
+                    <div class="cart">
+
+                    </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" id="clear_cart">Очистить корзину</button>
                     <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Закрыть</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="task3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Задание 3</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center flex-wrap" id="catalog">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" id="clear_catalog">Очистить каталог</button>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -185,7 +329,7 @@ for (let row=0; row<=8; row++) {
             </div>
 
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fab fa-twitter"></i></a></li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="fab fa-github"></i></a></li>
                 <li class="ms-3"><a class="text-muted" href="#"><i class="fab fa-instagram"></i></a></li>
                 <li class="ms-3"><a class="text-muted" href="#"><i class="fab fa-facebook"></i></a></li>
             </ul>
