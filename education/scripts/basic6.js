@@ -119,7 +119,6 @@ function showImage() {
         el.addEventListener('click', e => {
             const modal = document.querySelector('.modal-content')
             const product = products.goods.find(item => item.id_product == e.target.dataset.id_product)
-            console.log(modal)
             const imgWrapper = document.createElement('div')
             imgWrapper.style.position = 'absolute'
             imgWrapper.style.display = 'flex'
@@ -130,22 +129,32 @@ function showImage() {
             imgWrapper.style.backgroundColor = 'rgba(0,0,0,.5)'
             modal.appendChild(imgWrapper)
             const img = document.createElement('img')
+            let src = product.image1
+            img.src = src
             img.style.height = '50vh'
-            img.src = product.image1
             imgWrapper.appendChild(img)
             imgWrapper.addEventListener('click', (e) => {
                 if (e.target != img) {
                     imgWrapper.style.display = 'none'
                 } else {
-                    console.log(getImage(product))
+                    switch(src) {
+                        case product.image1:
+                            img.src = product.image2
+                            src = product.image2
+                            break
+                        case product.image2: 
+                            img.src = product.image3
+                            src = product.image3
+                            break
+                        case product.image3:
+                            img.src = product.image1
+                            src = product.image1
+                            break
+                    }
                 }
             })
         })
     })
-}
-
-function getImage(obj) {
-    return [obj.image1, obj.image2, obj.image3]
 }
 
 showImage()
