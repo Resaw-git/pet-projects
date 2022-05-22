@@ -3,8 +3,8 @@
 const settings = {
   rowsCount: 21,
   colsCount: 21,
-  speed: 2,
-  winFoodCount: 50,
+  speed: 4,
+  winFoodCount: 10,
 };
 
 const config = {
@@ -60,6 +60,7 @@ const config = {
 };
 
 const map = {
+  config,
   cells: {},
   usedCells: [],
 
@@ -78,7 +79,7 @@ const map = {
       for (let col = 0; col < colsCount; col++) {
         const td = document.createElement('td');
         td.classList.add('cell');
-        this.cells[`x${col}_y${row}`] = td; 
+        this.cells[`x${col}_y${row}`] = td;
         tr.appendChild(td);
       }
     }
@@ -88,6 +89,16 @@ const map = {
     for (const cell of this.usedCells) {
       cell.className = 'cell';
     }
+    if (snakePointsArray[0].y == -1) {
+      snakePointsArray[0].y = this.config.getRowsCount() - 1
+    } else if (snakePointsArray[0].y == this.config.getRowsCount()) {
+      snakePointsArray[0].y = 0
+    }
+    if (snakePointsArray[0].x == -1) {
+      snakePointsArray[0].x = this.config.getColsCount() - 1
+    } else if (snakePointsArray[0].x == this.config.getColsCount()) {
+      snakePointsArray[0].x = 0
+    }
 
     this.usedCells = [];
 
@@ -95,7 +106,6 @@ const map = {
       const snakeCell = this.cells[`x${point.x}_y${point.y}`];
       snakeCell.classList.add(index === 0 ? 'snakeHead' : 'snakeBody');
       this.usedCells.push(snakeCell);
-      /* console.log(snakePointsArray) */
     });
 
     const foodCell = this.cells[`x${foodPoint.x}_y${foodPoint.y}`];
@@ -257,12 +267,6 @@ const game = {
   },
 
   tickHandler() {
-    if (!this.canMakeStep()) {
-      this.snake.body[0].y = 21
-      /* console.log(this.snake.body) */
-      /* return this.finish(); */
-    }
-
     if (this.food.isOnPoint(this.snake.getNextStepHeadPoint())) {
       this.snake.growUp();
       this.food.setCoordinates(this.getRandomFreeCoordinates());
@@ -375,15 +379,6 @@ const game = {
     return this.snake.getBody().length > this.config.getWinFoodCount();
   },
 
-  canMakeStep() {
-    const nexHeadPoint = this.snake.getNextStepHeadPoint();
-
-    return !this.snake.isOnPoint(nexHeadPoint)
-      && nexHeadPoint.x < this.config.getColsCount()
-      && nexHeadPoint.y < this.config.getRowsCount()
-      && nexHeadPoint.x >= 0
-      && nexHeadPoint.y >= 0;
-  }
 };
 
 window.addEventListener('load', () => game.init({speed: 5}));
